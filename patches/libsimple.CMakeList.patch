@@ -1,0 +1,12 @@
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index 6d7474b..73b1f86 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -48,6 +48,8 @@ else()
+   target_include_directories(simple INTERFACE ${SQLITE3_HEADERS_DIR})
+ endif()
+ 
++target_compile_options(simple PRIVATE -Oz -DSQLITE_CORE)
+ target_link_libraries(simple PUBLIC coverage_config PRIVATE PINYIN_TEXT SQLite3)
+ 
+ install(TARGETS simple DESTINATION bin)

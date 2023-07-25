@@ -1,0 +1,13 @@
+diff --git a/src/pinyin.cc b/src/pinyin.cc
+index 520f237..8bf9da7 100644
+--- a/src/pinyin.cc
++++ b/src/pinyin.cc
+@@ -94,7 +94,7 @@ int PinYin::codepoint(const std::string &u) {
+       return ((unsigned char)u[0] - 240) * 262144 + ((unsigned char)u[1] - 128) * 4096 +
+              ((unsigned char)u[2] - 128) * 64 + ((unsigned char)u[3] - 128);
+     default:
+-      throw std::runtime_error("should never happen");
++      //throw std::runtime_error("should never happen");
+   }
+ }
+ 
