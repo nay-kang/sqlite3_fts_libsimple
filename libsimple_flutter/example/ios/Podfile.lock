@@ -1,0 +1,56 @@
+PODS:
+  - Flutter (1.0.0)
+  - integration_test (0.0.1):
+    - Flutter
+  - libsimple_flutter (0.0.1):
+    - Flutter
+    - sqlite3
+    - sqlite3/fts5
+    - sqlite3/perf-threadsafe
+    - sqlite3/rtree
+  - sqlite3 (3.43.0):
+    - sqlite3/common (= 3.43.0)
+  - sqlite3/common (3.43.0)
+  - sqlite3/fts5 (3.43.0):
+    - sqlite3/common
+  - sqlite3/perf-threadsafe (3.43.0):
+    - sqlite3/common
+  - sqlite3/rtree (3.43.0):
+    - sqlite3/common
+  - sqlite3_flutter_libs (0.0.1):
+    - Flutter
+    - sqlite3 (~> 3.43.0)
+    - sqlite3/fts5
+    - sqlite3/perf-threadsafe
+    - sqlite3/rtree
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - integration_test (from `.symlinks/plugins/integration_test/ios`)
+  - libsimple_flutter (from `.symlinks/plugins/libsimple_flutter/ios`)
+  - sqlite3_flutter_libs (from `.symlinks/plugins/sqlite3_flutter_libs/ios`)
+
+SPEC REPOS:
+  trunk:
+    - sqlite3
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  integration_test:
+    :path: ".symlinks/plugins/integration_test/ios"
+  libsimple_flutter:
+    :path: ".symlinks/plugins/libsimple_flutter/ios"
+  sqlite3_flutter_libs:
+    :path: ".symlinks/plugins/sqlite3_flutter_libs/ios"
+
+SPEC CHECKSUMS:
+  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  integration_test: 13825b8a9334a850581300559b8839134b124670
+  libsimple_flutter: 8ac82ca56f3aa80175be61baba0ee93b0e0debe0
+  sqlite3: 7afcf055d3700254769a4dcba56f27d26b5515c9
+  sqlite3_flutter_libs: 878ccbdcfd7b7cb41a774ec238223d876880c5ec
+
+PODFILE CHECKSUM: 02caaa843f6501172c0d470d80e72f61175c8b93
+
+COCOAPODS: 1.12.1
