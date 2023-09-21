@@ -2,24 +2,24 @@ PODS:
   - Flutter (1.0.0)
   - integration_test (0.0.1):
     - Flutter
-  - libsimple_flutter (0.0.1):
+  - libsimple_flutter (0.0.2):
     - Flutter
-    - sqlite3
+    - sqlite3 (~> 3.43.1)
     - sqlite3/fts5
     - sqlite3/perf-threadsafe
     - sqlite3/rtree
-  - sqlite3 (3.43.0):
-    - sqlite3/common (= 3.43.0)
-  - sqlite3/common (3.43.0)
-  - sqlite3/fts5 (3.43.0):
+  - sqlite3 (3.43.1):
+    - sqlite3/common (= 3.43.1)
+  - sqlite3/common (3.43.1)
+  - sqlite3/fts5 (3.43.1):
     - sqlite3/common
-  - sqlite3/perf-threadsafe (3.43.0):
+  - sqlite3/perf-threadsafe (3.43.1):
     - sqlite3/common
-  - sqlite3/rtree (3.43.0):
+  - sqlite3/rtree (3.43.1):
     - sqlite3/common
   - sqlite3_flutter_libs (0.0.1):
     - Flutter
-    - sqlite3 (~> 3.43.0)
+    - sqlite3 (~> 3.43.1)
     - sqlite3/fts5
     - sqlite3/perf-threadsafe
     - sqlite3/rtree
@@ -47,9 +47,9 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   integration_test: 13825b8a9334a850581300559b8839134b124670
-  libsimple_flutter: 8ac82ca56f3aa80175be61baba0ee93b0e0debe0
-  sqlite3: 7afcf055d3700254769a4dcba56f27d26b5515c9
-  sqlite3_flutter_libs: 878ccbdcfd7b7cb41a774ec238223d876880c5ec
+  libsimple_flutter: 8eb0b87046db547d70a62d92141b413e1a5afdb8
+  sqlite3: e0a0623a33a20a47cb5921552aebc6e9e437dc91
+  sqlite3_flutter_libs: 0d61e18fab1bed977dbd2d2fc76a726044ca00e7
 
 PODFILE CHECKSUM: 02caaa843f6501172c0d470d80e72f61175c8b93
 

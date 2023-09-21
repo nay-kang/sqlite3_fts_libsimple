@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'libsimple_flutter'
-  s.version          = '0.0.1'
+  s.version          = '0.0.3'
   s.summary          = 'A new Flutter plugin project.'
   s.description      = <<-DESC
 A new Flutter plugin project.
@@ -16,7 +16,7 @@ A new Flutter plugin project.
   s.source_files = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'
   s.dependency 'Flutter'
-  s.dependency 'sqlite3','~> 3.43.0'
+  s.dependency 'sqlite3','~> 3.43.1'
   s.dependency 'sqlite3/fts5'
   s.dependency 'sqlite3/perf-threadsafe'
   s.dependency 'sqlite3/rtree'
