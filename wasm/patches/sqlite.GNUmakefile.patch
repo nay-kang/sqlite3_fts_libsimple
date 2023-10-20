@@ -1,14 +1,14 @@
 diff --git a/ext/wasm/GNUmakefile b/ext/wasm/GNUmakefile
-index a99513bfa..920e491ca 100644
+index c0cab212d..2630c6d92 100644
 --- a/ext/wasm/GNUmakefile
 +++ b/ext/wasm/GNUmakefile
-@@ -191,7 +191,8 @@ SQLITE_OPT = \
+@@ -185,7 +185,8 @@ SQLITE_OPT = \
    '-DSQLITE_DEFAULT_UNIX_VFS="unix-none"' \
    -DSQLITE_USE_URI=1 \
    -DSQLITE_WASM_ENABLE_C_TESTS \
 -  -DSQLITE_C=$(sqlite3.c)
 +  -DSQLITE_C=$(sqlite3.c) \
 +  "$(project_dir)/build/simple-master/build_static/src/libsimple.a"
- 
- .NOTPARALLEL: $(sqlite3.h)
- $(sqlite3.h):
+ #SQLITE_OPT += -DSQLITE_DEBUG
+ # Enabling SQLITE_DEBUG will break sqlite3_wasm_vfs_create_file()
+ # (and thus sqlite3_js_vfs_create_file()). Those functions are

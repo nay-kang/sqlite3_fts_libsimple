@@ -78,7 +78,7 @@ emcmake cmake -DCODE_COVERAGE=OFF -DSIMPLE_WITH_JIEBA=OFF -DCMAKE_EXPORT_COMPILE
 cmake --build . -v
 
 
-sqlite_version="3420000"
+sqlite_version="3430100"
 sqlite_src_dir="sqlite-src-$sqlite_version"
 echo "download sqlite version:$sqlite_version"
 cd "$project_dir/build"
