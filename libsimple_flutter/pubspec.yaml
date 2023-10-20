@@ -5,13 +5,18 @@ homepage: https://github.com/nay-kang/sqlite3_fts_libsimple
 
 environment:
   sdk: '>=3.0.6 <4.0.0'
-  flutter: ">=3.3.0"
+  flutter: ">=3.13.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  plugin_platform_interface: ^2.0.2
-  sqlite3_flutter_libs: ^0.5.16
+  flutter_web_plugins:
+    sdk: flutter
+  js: ^0.6.7
+  path_provider: ^2.1.1
+  plugin_platform_interface: ^2.1.6
+  sqlite3: ^2.1.0
+  sqlite3_flutter_libs: ^0.5.17
 
 dev_dependencies:
   flutter_test:
@@ -33,6 +38,8 @@ flutter:
   # This is required for using `dart:ffi`.
   # All these are used by the tooling to maintain consistency when
   # adding or updating assets for this project.
+  assets:
+    - assets/sqlite3bridge.js
   plugin:
     platforms:
       android:
@@ -40,6 +47,9 @@ flutter:
         pluginClass: LibsimpleFlutterPlugin
       ios:
         pluginClass: LibsimpleFlutterPlugin
+      web:
+        pluginClass: LibsimpleFlutterWeb
+        fileName: libsimple_flutter_web.dart
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:

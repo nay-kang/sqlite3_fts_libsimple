@@ -2,12 +2,15 @@ PODS:
   - Flutter (1.0.0)
   - integration_test (0.0.1):
     - Flutter
-  - libsimple_flutter (0.0.2):
+  - libsimple_flutter (0.0.3):
     - Flutter
     - sqlite3 (~> 3.43.1)
     - sqlite3/fts5
     - sqlite3/perf-threadsafe
     - sqlite3/rtree
+  - path_provider_foundation (0.0.1):
+    - Flutter
+    - FlutterMacOS
   - sqlite3 (3.43.1):
     - sqlite3/common (= 3.43.1)
   - sqlite3/common (3.43.1)
@@ -28,6 +31,7 @@ DEPENDENCIES:
   - Flutter (from `Flutter`)
   - integration_test (from `.symlinks/plugins/integration_test/ios`)
   - libsimple_flutter (from `.symlinks/plugins/libsimple_flutter/ios`)
+  - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - sqlite3_flutter_libs (from `.symlinks/plugins/sqlite3_flutter_libs/ios`)
 
 SPEC REPOS:
@@ -41,13 +45,16 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/integration_test/ios"
   libsimple_flutter:
     :path: ".symlinks/plugins/libsimple_flutter/ios"
+  path_provider_foundation:
+    :path: ".symlinks/plugins/path_provider_foundation/darwin"
   sqlite3_flutter_libs:
     :path: ".symlinks/plugins/sqlite3_flutter_libs/ios"
 
 SPEC CHECKSUMS:
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   integration_test: 13825b8a9334a850581300559b8839134b124670
-  libsimple_flutter: 8eb0b87046db547d70a62d92141b413e1a5afdb8
+  libsimple_flutter: 54925f1b2679f6933de88544ae4ff420c2cd42bf
+  path_provider_foundation: 29f094ae23ebbca9d3d0cec13889cd9060c0e943
   sqlite3: e0a0623a33a20a47cb5921552aebc6e9e437dc91
   sqlite3_flutter_libs: 0d61e18fab1bed977dbd2d2fc76a726044ca00e7
 
