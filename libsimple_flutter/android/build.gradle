@@ -48,6 +48,7 @@ android {
     dependencies {
         testImplementation 'org.jetbrains.kotlin:kotlin-test'
         testImplementation 'org.mockito:mockito-core:5.0.0'
+        implementation 'net.codeedu:sqlite3-native-library:3.43.1'
     }
 
     testOptions {
@@ -62,3 +63,4 @@ android {
         }
     }
 }
+

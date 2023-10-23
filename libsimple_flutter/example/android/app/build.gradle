@@ -61,6 +61,9 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+    configurations {
+        all*.exclude group: 'eu.simonbinder', module: 'sqlite3-native-library'
+    }
 }
 
 flutter {
@@ -70,3 +73,9 @@ flutter {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
+
+// configurations.all {
+//     resolutionStrategy.dependencySubstitution {
+//         substitute module('eu.simonbinder:sqlite3-native-library') using module('net.codeedu:sqlite3-native-library:3.43.1')
+//     }
+// }

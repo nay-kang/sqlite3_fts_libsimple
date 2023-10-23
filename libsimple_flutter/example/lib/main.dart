@@ -39,6 +39,7 @@ class _MyAppState extends State<MyApp> {
     var sqlite = _libsimpleFlutterPlugin.getSqlite('mydb.sqlite3');
     await sqlite.exec(
         "CREATE VIRTUAL TABLE if not exists t1 USING fts5(x,y, tokenize = 'simple')");
+    await sqlite.exec("delete from t1;");
     await sqlite.exec(
         '''insert into t1(x,y) values ('周杰伦 Jay Chou:最美的不是下雨天，是曾与你躲过雨的屋檐',1),
                          ('I love China! 我爱中国!',2),
