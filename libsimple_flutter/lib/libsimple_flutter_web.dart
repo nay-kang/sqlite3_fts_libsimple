@@ -7,7 +7,6 @@ import 'dart:html' as html;
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
 import 'libsimple_flutter_platform_interface.dart';
-import 'sqlite3_js_interop.dart' as sqlite3interop;
 
 /// A web implementation of the LibsimpleFlutterPlatform of the LibsimpleFlutter plugin.
 class LibsimpleFlutterWeb extends LibsimpleFlutterPlatform {
@@ -16,17 +15,29 @@ class LibsimpleFlutterWeb extends LibsimpleFlutterPlatform {
 
   static void registerWith(Registrar registrar) {
     LibsimpleFlutterPlatform.instance = LibsimpleFlutterWeb();
-    sqlite3interop.injectSqliteInit();
-    var sqlite3script = html.ScriptElement();
-    sqlite3script.src =
-        "https://cdn.jsdelivr.net/npm/sqlite3-libsimple-wasm@3.43.1/sqlite3.js";
-
-    var bridgescript = html.ScriptElement();
-    bridgescript.src =
-        "assets/packages/libsimple_flutter/assets/sqlite3bridge.js";
-    html.querySelector("head")?.children.add(sqlite3script);
-    html.querySelector("head")?.children.add(bridgescript);
+    if (html.querySelector('#sqlite3script') == null) {
+      //developing hot reload will do this multi times
+      var sqlite3script = html.ScriptElement();
+      sqlite3script.text = script;
+      sqlite3script.id = 'sqlite3script';
+      html.querySelector("head")?.children.add(sqlite3script);
+    }
   }
+
+  static String script = '''
+  let sqliteWorker;
+  (function(){
+      sqliteWorker = new Worker("assets/packages/libsimple_flutter/assets/sqlite-3.43.1/sqlite-worker.js");
+    })();
+  function callSqlite(method,args){
+    return new Promise((resolve,reject)=>{
+      sqliteWorker.postMessage([method,args]);
+      sqliteWorker.onmessage = (e) => {
+        resolve(e.data);
+      }
+    })
+  }
+''';
 
   /// Returns a [String] containing the version of the platform.
   @override
