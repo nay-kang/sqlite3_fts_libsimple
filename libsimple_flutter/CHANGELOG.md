@@ -1,3 +1,6 @@
+## 0.0.6
+* fix sqlite version conflict
+
 ## 0.0.5
 * change web sqlite run in worker in order to save db with OPFS
 

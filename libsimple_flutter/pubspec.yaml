@@ -1,6 +1,6 @@
 name: libsimple_flutter
 description: sqlite fts5 libsimple tokenizer plugin.libsimple version 20230628
-version: 0.0.5
+version: 0.0.6
 homepage: https://github.com/nay-kang/sqlite3_fts_libsimple
 
 environment:
