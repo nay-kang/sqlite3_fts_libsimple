@@ -1,3 +1,6 @@
+## 0.0.7
+* add prepare statement support
+
 ## 0.0.6
 * fix sqlite version conflict
 

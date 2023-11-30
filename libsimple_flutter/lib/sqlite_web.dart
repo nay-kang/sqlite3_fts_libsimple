@@ -7,13 +7,13 @@ class SqliteImpl extends Sqlite {
   }
 
   @override
-  exec(String sql) async {
-    await sql_interop.exec(sql);
+  exec(String sql, [List bind = const []]) async {
+    await sql_interop.exec(sql, bind);
   }
 
   @override
-  Future<List> query(String sql) async {
-    var rtn = await sql_interop.query(sql);
+  Future<List> query(String sql, [List bind = const []]) async {
+    var rtn = await sql_interop.query(sql, bind);
     return rtn!;
   }
 }

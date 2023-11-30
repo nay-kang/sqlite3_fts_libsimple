@@ -47,7 +47,7 @@ class _MyAppState extends State<MyApp> {
                          ('@English &special _characters."''bacon-&and''-eggs%',4);''');
 
     var d = await sqlite
-        .query("select * from t1 where x match simple_query('zhoujiel')");
+        .query("select * from t1 where x match simple_query(?)", ['jielun']);
     print(d);
 
     // If the widget was removed from the tree while the asynchronous platform

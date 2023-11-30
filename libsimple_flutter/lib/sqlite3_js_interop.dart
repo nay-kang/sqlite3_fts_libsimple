@@ -11,9 +11,17 @@ void init(filename, mode) {
   _inited = promiseToFuture(promise);
 }
 
-Future<List?> query(String sql, [List? bind]) async {
+Future<List?> query(String sql, [List bind = const []]) async {
   await _inited;
-  var promise = callSqlite('exec', [sql, bind]);
+
+  /*
+  const [] parameter will cause error 
+  Error: DataCloneError: Failed to execute 'postMessage' on 'Worker': function Array() { [native code] } could not be cloned.
+  so I had to change the bind to none-constant value
+    */
+  var params = List.from(bind);
+
+  var promise = callSqlite('exec', [sql, params]);
   var result = await promiseToFuture(promise);
   var rtn = [];
   for (var row in result) {
@@ -23,6 +31,6 @@ Future<List?> query(String sql, [List? bind]) async {
   return rtn;
 }
 
-Future<void> exec(String sql, [List? bind]) async {
+Future<void> exec(String sql, [List bind = const []]) async {
   await query(sql, bind);
 }

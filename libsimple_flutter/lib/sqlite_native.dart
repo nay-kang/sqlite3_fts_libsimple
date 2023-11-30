@@ -16,15 +16,15 @@ class SqliteImpl extends Sqlite {
   }
 
   @override
-  exec(String sql) async {
+  exec(String sql, [List bind = const []]) async {
     var dbInstance = await dbCompleter.future;
-    dbInstance.execute(sql);
+    dbInstance.execute(sql, bind);
   }
 
   @override
-  Future<List> query(String sql) async {
+  Future<List> query(String sql, [List bind = const []]) async {
     var dbInstance = await dbCompleter.future;
-    var re = dbInstance.select(sql);
+    var re = dbInstance.select(sql, bind);
     List rtn = [];
     for (var row in re) {
       rtn.add(row);
