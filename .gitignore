@@ -3,3 +3,4 @@ build
 dist
 *.zip
 **/.DS_Store
+wasm/wasm-output

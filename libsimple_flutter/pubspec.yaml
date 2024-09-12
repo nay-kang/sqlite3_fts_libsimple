@@ -1,6 +1,6 @@
 name: libsimple_flutter
 description: sqlite fts5 libsimple tokenizer plugin.libsimple version 20230628
-version: 0.0.7
+version: 0.0.8
 homepage: https://github.com/nay-kang/sqlite3_fts_libsimple
 
 environment:
@@ -12,7 +12,7 @@ dependencies:
     sdk: flutter
   flutter_web_plugins:
     sdk: flutter
-  js: ^0.6.7
+  js: ^0.7.1
   path: ^1.8.3
   path_provider: ^2.1.1
   plugin_platform_interface: ^2.1.6
@@ -22,7 +22,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  flutter_lints: ^4.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -40,7 +40,7 @@ flutter:
   # All these are used by the tooling to maintain consistency when
   # adding or updating assets for this project.
   assets:
-    - assets/sqlite-3.43.1/
+    - assets/sqlite/
   plugin:
     platforms:
       android:

@@ -37,6 +37,8 @@ class _MyAppState extends State<MyApp> {
     }
 
     var sqlite = _libsimpleFlutterPlugin.getSqlite('mydb.sqlite3');
+    var version = await sqlite.query("select sqlite_version();");
+    print(version);
     await sqlite.exec(
         "CREATE VIRTUAL TABLE if not exists t1 USING fts5(x,y, tokenize = 'simple')");
     await sqlite.exec("delete from t1;");

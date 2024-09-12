@@ -27,7 +27,7 @@ class LibsimpleFlutterWeb extends LibsimpleFlutterPlatform {
   static String script = '''
   let sqliteWorker;
   (function(){
-      sqliteWorker = new Worker("assets/packages/libsimple_flutter/assets/sqlite-3.43.1/sqlite-worker.js");
+      sqliteWorker = new Worker("assets/packages/libsimple_flutter/assets/sqlite/sqlite-worker.js");
     })();
   function callSqlite(method,args){
     return new Promise((resolve,reject)=>{
