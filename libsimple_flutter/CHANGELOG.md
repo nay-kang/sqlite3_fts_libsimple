@@ -1,3 +1,6 @@
+## 0.0.9
+downgrade JS package version for compatible
+
 ## 0.0.8
 * mainly upgrade gradle version
 
