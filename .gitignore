@@ -4,3 +4,8 @@ dist
 *.zip
 **/.DS_Store
 wasm/wasm-output
+
+
+libsimple_flutter/android/libs/
+libsimple_flutter/example/android/app/.cxx/
+libsimple_flutter/example/android/app/libs/
