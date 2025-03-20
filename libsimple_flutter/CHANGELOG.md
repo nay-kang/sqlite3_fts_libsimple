@@ -1,3 +1,6 @@
+## 0.0.8
+* mainly upgrade gradle version
+
 ## 0.0.7
 * add prepare statement support
 

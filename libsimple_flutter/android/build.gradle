@@ -1,23 +1,13 @@
 group 'net.codeedu.libsimple_flutter'
 version '1.0-SNAPSHOT'
 
-buildscript {
-    ext.kotlin_version = '1.7.10'
-    repositories {
-        google()
-        mavenCentral()
-    }
-
-    dependencies {
-        classpath 'com.android.tools.build:gradle:7.3.0'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
-}
-
 allprojects {
     repositories {
         google()
         mavenCentral()
+        // flatDir {
+        //     dirs 'libs'
+        // }
     }
 }
 
@@ -25,6 +15,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
+    namespace 'net.codeedu.libsimple_flutter'
     compileSdkVersion 31
 
     compileOptions {
@@ -42,13 +33,14 @@ android {
     }
 
     defaultConfig {
-        minSdkVersion 16
+        minSdkVersion 21
     }
 
     dependencies {
         testImplementation 'org.jetbrains.kotlin:kotlin-test'
         testImplementation 'org.mockito:mockito-core:5.0.0'
         implementation 'net.codeedu:sqlite3-native-library:3.43.1'
+        // implementation(name: 'sqlite3-native-library-debug', ext: 'aar')
     }
 
     testOptions {
@@ -62,5 +54,7 @@ android {
             }
         }
     }
+    buildFeatures {
+        buildConfig = true
+    }
 }
-
