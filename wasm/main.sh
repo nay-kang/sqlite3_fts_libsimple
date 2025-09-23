@@ -7,10 +7,28 @@ echo "checking tools"
 mkdir -p .tools
 cd .tools || exit
 
+echo "Cheking zip..."
+exists=$(which zip)
+if [ -z "$exists" ]; then
+    sudo apt install zip -y
+fi
+
+echo "Cheking unzip..."
+exists=$(which unzip)
+if [ -z "$exists" ]; then
+    sudo apt install unzip -y
+fi
+
+echo "Cheking tcl..."
+exists=$(which tclsh)
+if [ -z "$exists" ]; then
+    sudo apt install tcl -y
+fi
+
 echo "Cheking cmake..."
 exists=$(which cmake)
 if [ -z "$exists" ]; then
-    sudo apt install cmake
+    sudo apt install cmake -y
     cmake --version
 fi
 
@@ -97,7 +115,7 @@ make dist dist.build=o2
 # wasm-opt -O4 jswasm/sqlite3.wasm -o jswasm/sqlite3.opt.wasm
 # mv jswasm/sqlite3.{,orginal.}wasm
 # mv jswasm/sqlite3.{opt.,}wasm
-ln -s "$project_dir"/build/$sqlite_src_dir/ext/wasm/sqlite-wasm-$sqlite_version.zip "$project_dir"/
+ln -sf "$project_dir"/build/$sqlite_src_dir/ext/wasm/sqlite-wasm-$sqlite_version.zip "$project_dir"/
 rm -f wasm-output
 ln -s "$project_dir"/build/$sqlite_src_dir/ext/wasm/ "$project_dir"/wasm-output
 
