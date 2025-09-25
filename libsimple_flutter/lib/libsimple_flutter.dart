@@ -15,6 +15,6 @@ abstract class Sqlite {
   String filename;
   Sqlite(this.filename);
 
-  exec(String sql, [List bind = const []]);
+  Future<void> exec(String sql, [List bind = const []]);
   Future<List> query(String sql, [List bind = const []]);
 }

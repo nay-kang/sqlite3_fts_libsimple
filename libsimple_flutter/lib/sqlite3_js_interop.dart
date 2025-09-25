@@ -1,36 +1,91 @@
-import 'package:js/js.dart';
-import 'package:js/js_util.dart';
+import 'dart:js_interop';
 
-@JS('callSqlite')
-external Object callSqlite(String method, List args);
+/// Exception thrown when SQLite operations fail
+class SqliteException implements Exception {
+  final String message;
+  SqliteException(this.message);
 
-Future? _inited;
-
-void init(filename, mode) {
-  var promise = callSqlite('init', [filename, mode]);
-  _inited = promiseToFuture(promise);
+  @override
+  String toString() => 'SqliteException: $message';
 }
 
-Future<List?> query(String sql, [List bind = const []]) async {
-  await _inited;
+@JS()
+external JSPromise<JSObject?> callSqlite(String method, JSArray args);
 
-  /*
-  const [] parameter will cause error 
-  Error: DataCloneError: Failed to execute 'postMessage' on 'Worker': function Array() { [native code] } could not be cloned.
-  so I had to change the bind to none-constant value
-    */
-  var params = List.from(bind);
+/// Tracks initialization state of SQLite
+Future<void>? _initializationFuture;
 
-  var promise = callSqlite('exec', [sql, params]);
-  var result = await promiseToFuture(promise);
-  var rtn = [];
-  for (var row in result) {
-    var d = dartify(row) as Map;
-    rtn.add(d);
+/// Initializes the SQLite database.
+///
+/// [filename] is the name of the database file
+/// [mode] specifies the database access mode
+Future<void> init(String filename, String mode) {
+  if (_initializationFuture != null) {
+    throw SqliteException('SQLite is already initialized');
   }
-  return rtn;
+
+  try {
+    final promise = callSqlite('init', [filename.toJS, mode.toJS].toJS);
+    _initializationFuture = promise.toDart.then((_) {});
+    return _initializationFuture!;
+  } catch (e) {
+    throw SqliteException('Failed to initialize SQLite: $e');
+  }
 }
 
-Future<void> exec(String sql, [List bind = const []]) async {
+/// Executes a SQL query and returns the results.
+///
+/// [sql] is the SQL query to execute
+/// [bind] is an optional list of parameters to bind to the query
+Future<List<Map<String, dynamic>>> query(String sql,
+    [List<dynamic> bind = const []]) async {
+  if (_initializationFuture == null) {
+    throw SqliteException('SQLite is not initialized. Call init() first.');
+  }
+
+  await _initializationFuture;
+
+  try {
+    final jsParams = listToJSArray(bind);
+    final promise = callSqlite('exec', [sql.toJS, jsParams].toJS);
+    final result = (await promise.toDart) as JSArray;
+
+    return result.toDart
+        .map((row) => (row.dartify() as Map).cast<String, dynamic>())
+        .toList();
+  } catch (e) {
+    throw SqliteException('Query failed: $e');
+  }
+}
+
+/// Executes a SQL statement without returning results.
+///
+/// [sql] is the SQL statement to execute
+/// [bind] is an optional list of parameters to bind to the statement
+Future<void> exec(String sql, [List<dynamic> bind = const []]) async {
   await query(sql, bind);
+}
+
+/// Converts a Dart List to a JavaScript Array.
+/// fucking flutter; if using else if (item is num || item is bool || item is String) it will throw error NoSuchMethodError: 'toJS' method not found
+/// Handles conversion of primitive types (String, num, bool) and
+/// falls back to string representation for other types.
+JSArray<JSAny> listToJSArray(List<dynamic> list) {
+  final jsItems = <JSAny>[];
+  for (final item in list) {
+    if (item == null) {
+      jsItems.add("".toJS);
+      // } else if (item is num || item is bool || item is String) {
+      //   jsItems.add(item.toJS);
+    } else if (item is String) {
+      jsItems.add(item.toJS);
+    } else if (item is num) {
+      jsItems.add(item.toJS);
+    } else if (item is bool) {
+      jsItems.add(item.toJS);
+    } else {
+      jsItems.add(item.toString().toJS);
+    }
+  }
+  return jsItems.toJS;
 }

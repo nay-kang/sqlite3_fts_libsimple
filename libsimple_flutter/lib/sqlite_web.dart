@@ -14,6 +14,6 @@ class SqliteImpl extends Sqlite {
   @override
   Future<List> query(String sql, [List bind = const []]) async {
     var rtn = await sql_interop.query(sql, bind);
-    return rtn!;
+    return rtn;
   }
 }

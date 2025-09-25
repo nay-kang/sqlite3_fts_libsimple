@@ -14,8 +14,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
-  final _libsimpleFlutterPlugin = LibsimpleFlutter();
+  String content = 'Unknown';
+  final libsimpleFlutterPlugin = LibsimpleFlutter();
 
   @override
   void initState() {
@@ -27,7 +27,7 @@ class _MyAppState extends State<MyApp> {
   Future<void> initPlatformState() async {
     String debugOutput = '';
 
-    var sqlite = _libsimpleFlutterPlugin.getSqlite('mydb.sqlite3');
+    var sqlite = libsimpleFlutterPlugin.getSqlite('mydb.sqlite3');
     var version = await sqlite.query("select sqlite_version();");
     debugOutput += "$version\n";
     debugPrint(version.toString());
@@ -45,13 +45,10 @@ class _MyAppState extends State<MyApp> {
     debugOutput += d.toString();
     debugPrint(d.toString());
 
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
     if (!mounted) return;
 
     setState(() {
-      _platformVersion = debugOutput;
+      content = debugOutput;
     });
   }
 
@@ -63,7 +60,7 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Plugin example app'),
         ),
         body: Center(
-          child: Text('Sqlite Test: $_platformVersion\n'),
+          child: Text('Sqlite Test: $content\n'),
         ),
       ),
     );

@@ -2,7 +2,7 @@
 // of your plugin as a separate package, instead of inlining it in the same
 // package as the core of your plugin.
 // ignore: avoid_web_libraries_in_flutter
-import 'dart:html' as html;
+import 'package:web/web.dart';
 
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
@@ -15,12 +15,12 @@ class LibsimpleFlutterWeb extends LibsimpleFlutterPlatform {
 
   static void registerWith(Registrar registrar) {
     LibsimpleFlutterPlatform.instance = LibsimpleFlutterWeb();
-    if (html.querySelector('#sqlite3script') == null) {
+    if (document.querySelector('#sqlite3script') == null) {
       //developing hot reload will do this multi times
-      var sqlite3script = html.ScriptElement();
-      sqlite3script.text = script;
+      var sqlite3script = document.createElement('script');
+      sqlite3script.textContent = script;
       sqlite3script.id = 'sqlite3script';
-      html.querySelector("head")?.children.add(sqlite3script);
+      document.querySelector("head")?.append(sqlite3script);
     }
   }
 
@@ -42,7 +42,7 @@ class LibsimpleFlutterWeb extends LibsimpleFlutterPlatform {
   /// Returns a [String] containing the version of the platform.
   @override
   Future<String?> getPlatformVersion() async {
-    final version = html.window.navigator.userAgent;
+    final version = window.navigator.userAgent;
     return version;
   }
 }

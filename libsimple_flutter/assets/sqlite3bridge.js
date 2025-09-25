@@ -15,13 +15,13 @@
     });
   }
   let counter=0;
-  var interval = setInterval(function(){
+  const interval = setInterval(function(){
     if(window.sqlite3InitModule){
       initSqlite();
       clearInterval(interval);
     }else if(counter>20){
       clearInterval(interval);
-      throw 'failed to init sqlite';
+      throw new Error('failed to init sqlite');
     }
     console.log('wait for sqlite.js loading')
     counter++;

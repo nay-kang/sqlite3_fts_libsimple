@@ -1,3 +1,8 @@
+## 0.0.10
+
+migrate package:js to dart:js_interop.  
+upgrade dependency major versions. 
+
 ## 0.0.9
 downgrade JS package version for compatible
 
