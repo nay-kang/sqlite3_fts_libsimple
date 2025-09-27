@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:libsimple_flutter/libsimple_flutter.dart';
+import 'package:synchronized/synchronized.dart';
 
 void main() {
   runApp(const MyApp());
@@ -43,12 +44,26 @@ class _MyAppState extends State<MyApp> {
     var d = await sqlite
         .query("select * from t1 where x match simple_query(?)", ['jielun']);
     debugOutput += d.toString();
+
+    for (var i = 0; i < 5; i++) {
+      multipleSql(sqlite, 'x$i', 'y$i');
+    }
+
     debugPrint(d.toString());
 
     if (!mounted) return;
 
     setState(() {
       content = debugOutput;
+    });
+  }
+
+  /// Use a lock to ensure that multiple SQL statements are executed sequentially.
+  var dbLock = Lock();
+  Future<void> multipleSql(Sqlite sqlite, String x, String y) async {
+    await dbLock.synchronized(() async {
+      await sqlite.exec("insert into t1(x,y) values (?,?);", [x, y]);
+      await sqlite.exec("delete from t1 where y=?;", [y]);
     });
   }
 
